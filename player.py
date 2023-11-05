@@ -75,8 +75,7 @@ class Player(pygame.sprite.Sprite):
             self.watering.play()
 
     def get_target_pos(self):
-        self.target_pos = self.rect.center + \
-            PLAYER_TOOL_OFFSET[self.status.split('_')[0]]
+        self.target_pos = self.rect.center + PLAYER_TOOL_OFFSET[self.status.split('_')[0]]
 
     def use_seed(self):
         if self.seed_inventory[self.selected_seed] > 0:

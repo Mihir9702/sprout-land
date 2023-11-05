@@ -18,8 +18,7 @@ class Menu:
         self.padding = 8
 
         # entries
-        self.options = list(self.player.item_inventory.keys()) + \
-            list(self.player.seed_inventory.keys())
+        self.options = list(self.player.item_inventory.keys()) + list(self.player.seed_inventory.keys())
         self.sell_border = len(self.player.item_inventory) - 1
         self.setup()
 
@@ -33,7 +32,7 @@ class Menu:
             SCREEN_WIDTH / 2, SCREEN_HEIGHT - 20))
 
         pygame.draw.rect(self.display_surface, 'white',
-                         text_rect.inflate(10, 10), border_width=0, border_radius=6)
+                         text_rect.inflate(10, 10), 0, 6)
         self.display_surface.blit(text_surf, text_rect)
 
     def setup(self):
@@ -51,8 +50,8 @@ class Menu:
             SCREEN_WIDTH / 2 - self.width / 2, self.menu_top, self.width, self.total_height)
 
         # buy and sell
-        self.buy_text = pygame.font.render('buy', False, 'black')
-        self.sell_text = pygame.font.render('sell', False, 'black')
+        self.buy_text = self.font.render('buy', False, 'black')
+        self.sell_text = self.font.render('sell', False, 'black')
 
     def input(self):
         keys = pygame.key.get_pressed()
@@ -124,10 +123,8 @@ class Menu:
         self.input()
         self.display_money()
         for i, text_surf in enumerate(self.text_surfs):
-            top = self.main_rect.top + i * \
-                (text_surf.get_height() + (self.padding * 2) + self.space)
-            amount_list = list(self.player.item_inventory()) + \
-                list(self.player.seed_inventory.values())
+            top = self.main_rect.top + i * (text_surf.get_height() + (self.padding * 2) + self.space)
+            amount_list = list(self.player.item_inventory()) + list(self.player.seed_inventory.values())
             amount = amount_list[i]
             self.show_entry(text_surf, amount, top, self.index == i)
             # self.display_surface(text_surf, (100, i * 50))
